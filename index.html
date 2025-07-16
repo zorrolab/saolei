@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>现代扫雷游戏</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="game-panel">
+            <div class="control-panel">
+                <div class="game-info">
+                    <div class="info-item">
+                        <span class="label"><i class="fas fa-bomb"></i> 地雷数量</span>
+                        <span class="value" id="mine-count">10</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label"><i class="fas fa-stopwatch"></i> 时间</span>
+                        <span class="value" id="timer">000</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label"><i class="fas fa-flag-checkered"></i> 状态</span>
+                        <span class="value" id="game-status">准备开始</span>
+                    </div>
+                </div>
+
+                <div class="difficulty-selector">
+                    <label for="difficulty">难度选择：</label>
+                    <select id="difficulty">
+                        <option value="easy" selected>简单 (10x10, 10雷)</option>
+                        <option value="medium">中等 (16x16, 40雷)</option>
+                        <option value="hard">困难 (30x16, 99雷)</option>
+                        <option value="custom">自定义</option>
+                    </select>
+                </div>
+
+                <div class="custom-settings" id="custom-settings" style="display: none;">
+                    <div class="input-group">
+                        <label for="custom-width">宽度：</label>
+                        <input type="number" id="custom-width" min="5" max="30" value="10">
+                    </div>
+                    <div class="input-group">
+                        <label for="custom-height">高度：</label>
+                        <input type="number" id="custom-height" min="5" max="30" value="10">
+                    </div>
+                    <div class="input-group">
+                        <label for="custom-mines">地雷数：</label>
+                        <input type="number" id="custom-mines" min="1" max="100" value="10">
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button id="new-game-btn" class="btn btn-primary"><i class="fas fa-gamepad"></i> 新游戏</button>
+                    <button id="pause-btn" class="btn btn-secondary"><i class="fas fa-pause"></i> 暂停</button>
+                    <button id="reset-btn" class="btn btn-secondary"><i class="fas fa-redo"></i> 重置</button>
+                </div>
+            </div>
+
+            <div class="game-area">
+                <div class="board-container">
+                    <div id="game-board" class="game-board">
+                        <!-- 游戏棋盘将在这里生成 -->
+                    </div>
+                </div>
+                
+                <div class="game-instructions">
+                    <h3>游戏说明</h3>
+                    <ul>
+                        <li><i class="fas fa-mouse-pointer"></i> 左键点击揭开格子</li>
+                        <li><i class="fas fa-mouse"></i> 右键点击标记/取消标记地雷</li>
+                        <li><i class="fas fa-hashtag"></i> 数字表示周围地雷数量</li>
+                        <li><i class="fas fa-bullseye"></i> 揭开所有非雷格子即可获胜</li>
+                        <li><i class="fas fa-explosion"></i> 点到地雷游戏结束</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-overlay" id="game-overlay" style="display: none;">
+            <div class="overlay-content">
+                <div class="overlay-icon" id="overlay-icon"><i class="fas fa-trophy"></i></div>
+                <div class="overlay-title" id="overlay-title">恭喜获胜！</div>
+                <div class="overlay-message" id="overlay-message">您成功清除了所有地雷！</div>
+                <button class="btn btn-primary" onclick="startNewGame()"><i class="fas fa-gamepad"></i> 再来一局</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
